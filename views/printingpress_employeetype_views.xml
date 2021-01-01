@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_printingpress_employeetype_form" model="ir.ui.view">
+        <field name="name">view.printingpress.employeetype.form</field>
+        <field name="model">printingpress.employeetype</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="name" required="1" placeholder="Name"/>                 
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_printingpress_employeetype_tree" model="ir.ui.view">
+        <field name="name">view.printingpress.employeetype.tree</field>
+        <field name="model">printingpress.employeetype</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_printingpress_employeetype" model="ir.actions.act_window">
+        <field name="name">Product Category Record</field>
+        <field name="res_model">printingpress.employeetype</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_employeetype" name="Empoloyee Category" parent="main_menu_employee" action="action_printingpress_employeetype"/>
+
+</odoo>

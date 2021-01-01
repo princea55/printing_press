@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="grp_manager" model="res.groups">
+        <field name="name">Printing Press Manager</field>
+    </record>
+
+    <!-- <record id="grp_manager_product" model="res.groups">
+        <field name="name">Product</field>
+    </record>
+
+    <record id="grp_employee" model="res.groups">
+        <field name="name">Employee</field>
+    </record>
+
+    <record id="grp_manager_rowmaterial" model="res.groups">
+        <field name="name">Row Material</field>
+    </record>
+
+    <record id="grp_manager_suplier" model="res.groups">
+        <field name="name">Suplier</field>
+    </record>
+
+    <record id="grp_manager_order" model="res.groups">
+        <field name="name">Order</field>
+    </record>
+
+    <record id="grp_manager_vendor" model="res.groups">
+        <field name="name">Vendor</field>
+    </record>
+
+    <record id="grp_manager_printingbook" model="res.groups">
+        <field name="name">Vendor</field>
+    </record> -->
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_printingpress_language_form" model="ir.ui.view">
+        <field name="name">view.printingpress.language.form</field>
+        <field name="model">printingpress.language</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="name" required="1" placeholder="Name"/>                 
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_printingpress_language_tree" model="ir.ui.view">
+        <field name="name">view.printingpress.language.tree</field>
+        <field name="model">printingpress.language</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_printingpress_language" model="ir.actions.act_window">
+        <field name="name">Product Language Record</field>
+        <field name="res_model">printingpress.language</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_language" name="Language" parent="main_menu_product" action="action_printingpress_language"/>
+
+</odoo>

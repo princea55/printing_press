@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_printingpress_rowmaterial_form" model="ir.ui.view">
+        <field name="name">view.printingpress.rowmaterial.form</field>
+        <field name="model">printingpress.rowmaterial</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="quentity" />
+                        <field name="material_type"  />
+
+                    </group>
+                    <notebook>
+                        <page name="rowmaterial" string="Vendor">
+                            <field name="rowmaterial_id" widget="many2many_tags"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_printingpress_rowmaterial_search" model="ir.ui.view">
+        <field name="name">view.printingpress.rowmaterial.search</field>
+        <field name="model">printingpress.rowmaterial</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <searchpanel>
+                    <field name="material_type" string="material Type" />
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_printingpress_rowmaterial_tree" model="ir.ui.view">
+        <field name="name">view.printingpress.rowmaterial.tree</field>
+        <field name="model">printingpress.rowmaterial</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="quentity" />
+                <field name="material_type" />
+                <field name="rowmaterial_id">
+                    <tree>
+                        <field name="name" />
+                    </tree>
+                </field>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_printingpress_rowmaterial" model="ir.actions.act_window">
+        <field name="name">Row Material Record</field>
+        <field name="res_model">printingpress.rowmaterial</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_rowmaterial" name="Row Material" parent="main_menu_product" action="action_printingpress_rowmaterial"/>
+</odoo>

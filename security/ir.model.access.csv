@@ -1,0 +1,30 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_item_manager, access.item.manager,model_printingpress_customer,grp_manager,1,1,1,1
+
+access_item_product, access.item.product,model_printingpress_product,grp_manager,1,1,1,1
+
+access_item_employee, access.item.employee,model_printingpress_employee,grp_manager,1,1,1,1
+
+access_item_rowmaterial, access.item.rowmaterial,model_printingpress_rowmaterial,grp_manager,1,1,1,1
+
+access_item_suplier, access.item.suplier,model_printingpress_suplier,grp_manager,1,1,1,1
+
+access_item_order, access.item.order,model_printingpress_order,grp_manager,1,1,1,1
+
+access_item_vendor, access.item.vendor,model_printingpress_vendor,grp_manager,1,1,1,1
+
+access_item_printingbook, access.item.printingbook,model_printingpress_printingbook,grp_manager,1,1,1,1
+
+access_item_productcategory, access.item.productcategory,model_printingpress_productcategory,grp_manager,1,1,1,1
+
+access_item_productsubcategory, access.item.productsubcategory,model_printingpress_productsubcategory,grp_manager,1,1,1,1
+
+access_item_orderline, access.item.orderline,model_printingpress_orderline,grp_manager,1,1,1,1
+
+access_item_language, access.item.language,model_printingpress_language,grp_manager,1,1,1,1
+
+access_item_employeetype, access.item.employeetype,model_printingpress_employeetype,grp_manager,1,1,1,1
+
+
+
+

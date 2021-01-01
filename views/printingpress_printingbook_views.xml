@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <record id="view_printingpress_printingbook_form" model="ir.ui.view">
+        <field name="name">view.printingpress.printingbook.form</field>
+        <field name="model">printingpress.printingbook</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="product_id">
+                            <tree>
+                                <field name="name"/>
+                            </tree>
+                        </field>
+                        <field name="isworking" widget="boolean_toggle"/>
+                        <field name="iscomplete" widget="boolean_toggle"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_printingpress_printingbook_tree" model="ir.ui.view">
+        <field name="name">view.printingpress.printingbook.tree</field>
+        <field name="model">printingpress.printingbook</field>
+        <field name="arch" type="xml">
+
+            <tree>
+                <field name="product_id">
+                    <tree>
+                        <field name="name"/>
+                    </tree>
+                </field>
+                <field name="isworking" widget="boolean_toggle"/>
+                <field name="iscomplete" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    
+
+    <record id="action_printingpress_printingbook" model="ir.actions.act_window">
+        <field name="name">Printing Book Record</field>
+        <field name="res_model">printingpress.printingbook</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+    <!-- <menuitem id="menu_printingbook" name="Printing Book" parent="main_menu" action="action_printingpress_printingbook"/> -->
+
+</odoo>

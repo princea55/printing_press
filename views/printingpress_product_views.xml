@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_printingpress_product_form" model="ir.ui.view">
+        <field name="name">view.printingpress.product.form</field>
+        <field name="model">printingpress.product</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="image" class="oe_avatar" widget="image"/>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="isbn" />
+                            <field name="publisher_name" />
+                            <field name="product_category_id" />
+                            <field name="product_subcategory_id" />
+                            <field name="product_language_id"/>
+
+                            <!-- <field name="product_type" /> -->
+                            <!-- <field name="category" /> -->
+                        </group>
+                        <group>
+                            <field name="no_of_page" />
+                            <field name="price_per_book" />
+
+                            <field name="product_detail"/>
+                        </group>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_printingpress_product_tree" model="ir.ui.view">
+        <field name="name">view.printingpress.product.tree</field>
+        <field name="model">printingpress.product</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name" />
+                <field name="isbn" />
+                <field name="publisher_name" />
+                <field name="product_language_id">
+                    <tree>
+                        <field name="name" />
+                    </tree>
+                </field>
+                <field name="price_per_book" />
+                <field name="no_of_page" optional="hide"/>
+                <field name="product_category_id" optional="hide"/>
+                <field name="product_subcategory_id" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_printingpress_product_search" model="ir.ui.view">
+        <field name="name">view.printingpress.product.search</field>
+        <field name="model">printingpress.product</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <field name="name" />
+                <field name="isbn" />
+                <field name="publisher_name" />
+
+
+                <!-- <filter string="filter by book" name="product_type" domain="[('product_type','=','BK')]"/> -->
+                <!-- <filter string="filter by magazine" name="product_type" domain="[('product_type','=','MZ')]"/> -->
+                <searchpanel>
+                    <field name="product_category_id" string="Book Category" />
+                    <field name="product_subcategory_id" string="Book SubCategory" />
+                    <!-- <field name="product_language_id" string="Language" /> -->
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_printingpress_product_kanban" model="ir.ui.view">
+        <field name="name">view.printingpress.product.kanban</field>
+        <field name="model">printingpress.product</field>
+        <field name="arch" type="xml">
+            <kanban>
+            <field name="id" />
+                <templates>
+                    <t t-name="kanban-box" records_draggable="true">
+                        <div t-attf-class="oe_kanban_content oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <!-- <img t-att-src="kanban_image('printingpress.employee','image',record.id.raw_value)" alt="Image"/> -->
+                                <img alt="Avatar" t-att-src="kanban_image('printingpress.product', 'image',record.id.raw_value)"/>
+                            </div>
+
+                            <div>
+                                <strong>Name:</strong>
+                                <field name="name" />
+
+                            </div>
+                            <div >
+                                <strong class="ml-2">ISBM:</strong>
+                                <field name="isbn" />
+                            </div>
+                            <!-- <div>
+                                <strong>Product Type:</strong>
+                                <field name="product_type" />
+                            </div> -->
+                            <!-- <div>
+                                <strong>Category Type:</strong>
+                                <field name="category" />
+                            </div> -->
+
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_printingpress_product" model="ir.actions.act_window">
+        <field name="name">Product Record</field>
+        <field name="res_model">printingpress.product</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <!-- <menuitem id="product" name="Product" parent="menu_printingpress"/> -->
+    <menuitem id="main_menu_product" name="Product" parent="menu_printingpress"/>
+    <menuitem id="menu_product" name="Product" parent="main_menu_product" action="action_printingpress_product"/>
+
+</odoo>

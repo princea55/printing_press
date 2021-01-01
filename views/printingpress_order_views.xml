@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_printingpress_order_form" model="ir.ui.view">
+        <field name="name">view.printingpress.order.form</field>
+        <field name="model">printingpress.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="customer_id"/>
+                        <field name="isworking" widget="boolean_toggle"/>
+                        <field name="iscomplete" widget="boolean_toggle"/>
+                    </group>
+                    <notebook>
+                        <page name="product_order" string="Select Product">
+                            <field name="orderline_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_printingpress_order_tree" model="ir.ui.view">
+        <field name="name">view.printingpress.order.tree</field>
+        <field name="model">printingpress.order</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="customer_id"/>
+                <field name="orderline_ids"/>
+                <field name="isworking" widget="boolean_toggle"/>
+                <field name="iscomplete" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_printingpress_order_search" model="ir.ui.view">
+        <field name="name">view.printingpress.order.search</field>
+        <field name="model">printingpress.order</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <field name="customer_id" />
+               <filter name="flt_working_product" string="Fliter By working Product" domain="[('isworking','=','t')]"/>
+            </search>
+            
+        </field>
+    </record>
+
+    <record id="action_printingpress_order" model="ir.actions.act_window">
+        <field name="name">Order Record</field>
+        <field name="res_model">printingpress.order</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_order" name="Order" parent="main_menu_product" action="action_printingpress_order"/>
+
+</odoo>
