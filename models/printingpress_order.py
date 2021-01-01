@@ -8,6 +8,7 @@ class printingpressOrder(models.Model):
     customer_id = fields.Many2one('printingpress.customer', string="Customer", required=True)
     isworking = fields.Boolean(string='IsWorking')
     iscomplete = fields.Boolean(string='IsComplete')
+    date = fields.Date(string='Date')
     # product_id = fields.Many2one('printingpress.orderline', string="Product Orders", required=True)
     
     orderline_ids = fields.One2many('printingpress.orderline', 'orderl_id', string='')

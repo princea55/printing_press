@@ -9,9 +9,13 @@
                 <sheet>
                     <group>
                         <field name="customer_id"/>
-                        <field name="isworking" widget="boolean_toggle"/>
-                        <field name="iscomplete" widget="boolean_toggle"/>
+                        <field name="date"/>
                     </group>
+                    <strong class="mr-2">Is Working </strong>
+                    <field name="isworking" widget="boolean_toggle"/>
+                    <strong class="mr-2">Is Complete </strong>
+                    <field name="iscomplete" widget="boolean_toggle"/>
+
                     <notebook>
                         <page name="product_order" string="Select Product">
                             <field name="orderline_ids"/>
@@ -26,9 +30,10 @@
         <field name="name">view.printingpress.order.tree</field>
         <field name="model">printingpress.order</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree decoration-primary="isworking==True" decoration-success="iscomplete==True">
                 <field name="customer_id"/>
                 <field name="orderline_ids"/>
+                <field name="date"/>
                 <field name="isworking" widget="boolean_toggle"/>
                 <field name="iscomplete" widget="boolean_toggle"/>
             </tree>
@@ -40,16 +45,27 @@
         <field name="arch" type="xml">
             <search string="">
                 <field name="customer_id" />
-               <filter name="flt_working_product" string="Fliter By working Product" domain="[('isworking','=','t')]"/>
+                <filter name="flt_working_product" string="Fliter By working Product" domain="[('isworking','=','t')]"/>
             </search>
-            
+
+        </field>
+    </record>
+
+    <record id="view_printingpress_order_calendar" model="ir.ui.view">
+        <field name="name">view.printingpress.order.calendar</field>
+        <field name="model">printingpress.order</field>
+        <field name="arch" type="xml">
+            <calendar string="Service Request" date_start="date" event_open_popup="true" mode="month" color="customer_id" quick_add="False">
+                <field name="customer_id"/>
+                <field name="orderline_ids"/>
+            </calendar>
         </field>
     </record>
 
     <record id="action_printingpress_order" model="ir.actions.act_window">
         <field name="name">Order Record</field>
         <field name="res_model">printingpress.order</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,calendar</field>
     </record>
 
     <menuitem id="menu_order" name="Order" parent="main_menu_product" action="action_printingpress_order"/>

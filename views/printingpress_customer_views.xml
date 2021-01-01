@@ -94,9 +94,6 @@
     </record>
 
 
-
-
-
     <record id="action_printingpress_customer" model="ir.actions.act_window">
         <field name="name">Customer Record</field>
         <field name="res_model">printingpress.customer</field>

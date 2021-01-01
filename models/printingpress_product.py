@@ -11,7 +11,7 @@ class printingpressProduct(models.Model):
     no_of_page = fields.Char(string="Number Of Page")
     price_per_book = fields.Integer(string="Price Per Book", required=True)
     product_detail = fields.Text(string="Product Description")
-    image = fields.Binary(string='Photo')
+    # image = fields.Binary(string='Photo')
     image = fields.Binary(string='photo', attachment=False, store=True)
     # customer_id = fields.Many2one('printingpress.customer', ondelete="cascade", string="Customer", required=True)
     product_category_id = fields.Many2one('printingpress.productcategory', string="Product Category", required=True)

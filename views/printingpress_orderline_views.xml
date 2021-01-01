@@ -2,7 +2,7 @@
 <odoo>
 
     <record id="view_printingpress_orderline_form" model="ir.ui.view">
-        <field name="name">view.printingpress.orderline.form</field>
+        <field name="name">view.printingpress_orderline.form</field>
         <field name="model">printingpress.orderline</field>
         <field name="arch" type="xml">
             <form>
@@ -13,7 +13,7 @@
                                 <field name="name"/>
                             </tree>
                         </field>
-                       
+
                         <field name="quentity" />
                         <field name="unit_price" />
                         <field name="total_price" />
@@ -22,7 +22,16 @@
             </form>
         </field>
     </record>
-
+    <record id="view_printingpress_orderline_graph" model="ir.ui.view">
+        <field name="name">view.printingpress.orderline.graph</field>
+        <field name="model">printingpress.orderline</field>
+        <field name="arch" type="xml">
+            <graph string="Project Tasks" type="pie">
+                <field name="product_id"/>
+                <field name="quentity" type="measure"/>
+            </graph>
+        </field>
+    </record>
     <record id="view_printingpress_orderline_tree" model="ir.ui.view">
         <field name="name">view.printingpress.orderline.tree</field>
         <field name="model">printingpress.orderline</field>
@@ -56,7 +65,7 @@
     <record id="action_printingpress_orderline" model="ir.actions.act_window">
         <field name="name">Order Record</field>
         <field name="res_model">printingpress.orderline</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,graph</field>
     </record>
 
     <menuitem id="menu_orderline" name="OrderLine" parent="main_menu_product" action="action_printingpress_orderline"/>
