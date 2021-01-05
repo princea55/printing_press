@@ -5,10 +5,11 @@ from openerp.models import TransientModel
 class printingpressEmployee(models.Model):
     _name = "printingpress.employee"
     _description = "This table contains all customers records"
-
-    name = fields.Char(string="Employee Name", required=True)
+    _inherit = 'mail.thread'
+    
+    name = fields.Char(string="Employee Name", required=True, track_visibilty='always')
     email = fields.Char(string="Employee Email", required=True)
-    contact = fields.Char(string="Employee Contact", required=True)
+    contact = fields.Char(string="Employee Contact", required=True, track_visibilty='onchange')
     image = fields.Binary(string='photo', attachment=False, store=True)
     employee_category = fields.Many2one('printingpress.employeetype', string='Employee Category')
     salary = fields.Integer(string="Employee Salary", required=True)
@@ -17,7 +18,7 @@ class printingpressEmployee(models.Model):
     state = fields.Many2one('res.country.state', string='State')
     address = fields.Text(string="Address")
     city = fields.Char(string='City')
-
+    
     # @api.onchange('country')
     # def set_values_to(self):
     #     if self.country:

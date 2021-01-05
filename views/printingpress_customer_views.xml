@@ -12,7 +12,7 @@
                         <group>
                             <field name="name" required="1" placeholder="Name"/>
                             <field name="email" placeholder="Email"/>
-                            <field name="contact" placeholder="Contact"/>
+                            <field name="contact" placeholder="Contact"  attrs="{'required': [('email', '!=', False)]}"/>
                         </group>
                         <group>
                             <field name="city" placeholder="City"/>

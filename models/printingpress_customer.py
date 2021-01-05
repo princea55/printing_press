@@ -6,7 +6,7 @@ class printingpressCustomer(models.Model):
     
     name = fields.Char(string = "Customer Name", size=20, help="Name of the customer", required=True)
     email = fields.Char(string = "Customer Email", required=True)
-    contact = fields.Char(string = "Customer Contact No.", required=True)
+    contact = fields.Char(string = "Customer Contact No.")
     city = fields.Char(string='Customer City')
     image = fields.Binary(string='photo', attachment=False, store=True)
     address = fields.Text(string = "Customer Address")

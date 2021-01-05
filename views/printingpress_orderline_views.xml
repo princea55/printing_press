@@ -16,7 +16,7 @@
 
                         <field name="quentity" />
                         <field name="unit_price" />
-                        <field name="total_price" />
+                        <field name="total_price" attrs="{'readonly':[('quentity','&gt;', 1)]}"/>
                     </group>
                 </sheet>
             </form>

@@ -7,9 +7,16 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <!-- <div class="oe_title">
+                        <h1>
+                            <field name="name_seq" readonly="1" />
+                        </h1>
+                    </div> -->
                     <group>
                         <field name="customer_id"/>
                         <field name="date"/>
+                        <field name="total_order_price"/>
+                        
                     </group>
                     <strong class="mr-2">Is Working </strong>
                     <field name="isworking" widget="boolean_toggle"/>
@@ -30,7 +37,8 @@
         <field name="name">view.printingpress.order.tree</field>
         <field name="model">printingpress.order</field>
         <field name="arch" type="xml">
-            <tree decoration-primary="isworking==True" decoration-success="iscomplete==True">
+            <tree decoration-primary="(iscomplete == False and isworking == True)" decoration-success="(iscomplete == True and isworking == False)">
+                <field name="name_seq"/>
                 <field name="customer_id"/>
                 <field name="orderline_ids"/>
                 <field name="date"/>
@@ -43,7 +51,7 @@
         <field name="name">view.printingpress.order.search</field>
         <field name="model">printingpress.order</field>
         <field name="arch" type="xml">
-            <search string="">
+            <search string="Search Panel for ordr">
                 <field name="customer_id" />
                 <filter name="flt_working_product" string="Fliter By working Product" domain="[('isworking','=','t')]"/>
             </search>
@@ -55,17 +63,28 @@
         <field name="name">view.printingpress.order.calendar</field>
         <field name="model">printingpress.order</field>
         <field name="arch" type="xml">
-            <calendar string="Service Request" date_start="date" event_open_popup="true" mode="month" color="customer_id" quick_add="False">
+            <calendar string="Service Request" date_start="date" event_open_popup="false" mode="month" color="customer_id" quick_add="True">
                 <field name="customer_id"/>
                 <field name="orderline_ids"/>
             </calendar>
         </field>
     </record>
 
+    <record id="view_printingpress_order_pivot" model="ir.ui.view">
+        <field name="name">view.printingpress.order.pivot</field>
+        <field name="model">printingpress.order</field>
+        <field name="arch" type="xml">
+            <pivot string="Order Show">
+                <field name="customer_id" type="row"/>
+                <field name="date" type="col" interval="day"/>
+            </pivot>
+        </field>
+    </record>
+
     <record id="action_printingpress_order" model="ir.actions.act_window">
         <field name="name">Order Record</field>
         <field name="res_model">printingpress.order</field>
-        <field name="view_mode">tree,form,calendar</field>
+        <field name="view_mode">tree,form,calendar,pivot</field>
     </record>
 
     <menuitem id="menu_order" name="Order" parent="main_menu_product" action="action_printingpress_order"/>

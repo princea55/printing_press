@@ -14,7 +14,7 @@
                             <field name="name" />
                             <field name="email" />
                             <field name="contact" />
-                            
+
                             <field name="salary"/>
                             <field name="experience"/>
                         </group>
@@ -31,6 +31,10 @@
                         </page>
                     </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
             </form>
         </field>
     </record>
@@ -53,6 +57,17 @@
         </field>
     </record>
 
+    <record id="view_printingpress_employee_pivot" model="ir.ui.view">
+        <field name="name">view.printingpress.employee.pivot</field>
+        <field name="model">printingpress.employee</field>
+        <field name="arch" type="xml">
+            <pivot string="Employee Show">
+                <field name="name" type="row"/>
+                <!-- <field name="employee_category" type="col"/> -->
+            </pivot>
+        </field>
+    </record>
+
     <record id="view_printingpress_employee_search" model="ir.ui.view">
         <field name="name">view.printingpress.employee.search</field>
         <field name="model">printingpress.employee</field>
@@ -63,6 +78,25 @@
                 <field name="email" />
 
                 <field name="contact"/>
+
+                <filter name="salary" string="filter by salary " domain="[('salary','>',10000)]"/>
+                <!-- <filter name="source" string="filter by =like Ahmedabad " domain="[('source','=like','%dabad')]"/> -->
+                <filter name="name_notlike" string="filter by not like name 'ce'" domain="[('name','not like','ce')]"/>
+                <filter name="name_ilike" string="filter by =ilike ce " domain="[('name','=ilike','prInce')]"/>
+                <filter name="name_in" string="filter by in name " domain="[('name','in',['jaydeep','prince'])]"/>
+                <!-- <filter name="source" string="filter by not in ahmedabad " domain="[('source','not in','Ahmedabad')]"/> -->
+                <!-- <filter name="source" string="filter by =? ahmedabad " domain="[('source','=?','Ahmedabad')]"/> -->
+
+                <!--                like, not like, =like, ilike, not like, =ilike, =?, in, not in, =, !=, child_of, <=, <, >, >=    -->
+
+
+
+
+
+
+
+
+
 
                 <!-- <filter string="filter by worker" name="employee_type" domain="[('employee_type','=','worker')]"/> -->
                 <!-- <separator/> -->
@@ -78,18 +112,34 @@
         </field>
     </record>
 
-    
-    
+
+
     <record id="view_printingpress_employee_kanban" model="ir.ui.view">
         <field name="name">view.printingpress.employee.kanban</field>
         <field name="model">printingpress.employee</field>
         <field name="arch" type="xml">
 
-            <kanban >
+            <kanban group_delete="true" group_edit="true" quick_create="true">
                 <field name="id"/>
                 <templates>
                     <t t-name="kanban-box" records_draggable="true">
+
                         <div t-attf-class="oe_kanban_content oe_kanban_global_click">
+                            <div class="o_dropdown_kanban dropdown">
+
+                                <a class="dropdown-toggle o-no-caret btn" role="button" data-toggle="dropdown" data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                    <span class="fa fa-ellipsis-v"/>
+                                </a>
+                                <div class="dropdown-menu" role="menu">
+                                    <t t-if="widget.editable">
+                                        <a role="menuitem" type="edit" class="dropdown-item">Edit</a>
+                                    </t>
+                                    <t t-if="widget.deletable">
+                                        <a role="menuitem" type="delete" class="dropdown-item">Delete</a>
+                                    </t>
+                                    <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-3">
                                     <div class="o_kanban_image">
@@ -122,7 +172,7 @@
     <record id="action_printingpress_employee" model="ir.actions.act_window">
         <field name="name">Employee Record</field>
         <field name="res_model">printingpress.employee</field>
-        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_mode">tree,form,kanban,pivot</field>
     </record>
 
     <!-- <menuitem id="menu_employee" name="Employee" parent="main_menu" action="action_printingpress_employee"/> -->
