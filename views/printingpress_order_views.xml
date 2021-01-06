@@ -6,17 +6,28 @@
         <field name="model">printingpress.order</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button string="Place Order" type="object" name="place_orders" states="place_order" class="oe_highlight"/>
+                    <button string="Confirm Order" type="object" name="confirmed_orders" states="confirmed_order"/>
+                    <button string="Cancel" type="object" name="cancel_order" states="place_order,confirmed_order,sale_order"/>
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}" />
+                </header>
                 <sheet>
+                    
                     <!-- <div class="oe_title">
                         <h1>
                             <field name="name_seq" readonly="1" />
                         </h1>
                     </div> -->
+
+                    <!-- <button string="%(action_printingpress_product)d" class="oe_right oe_button_box" icon="fa-cube" type="action"/> -->
+                    <button name="%(action_printingpress_productcategory)d" string="Product" type="action" />
+
                     <group>
                         <field name="customer_id"/>
                         <field name="date"/>
                         <field name="total_order_price"/>
-                        
+
                     </group>
                     <strong class="mr-2">Is Working </strong>
                     <field name="isworking" widget="boolean_toggle"/>
@@ -38,7 +49,7 @@
         <field name="model">printingpress.order</field>
         <field name="arch" type="xml">
             <tree decoration-primary="(iscomplete == False and isworking == True)" decoration-success="(iscomplete == True and isworking == False)">
-                <field name="name_seq"/>
+                <!-- <field name="name_seq"/> -->
                 <field name="customer_id"/>
                 <field name="orderline_ids"/>
                 <field name="date"/>
@@ -90,3 +101,5 @@
     <menuitem id="menu_order" name="Order" parent="main_menu_product" action="action_printingpress_order"/>
 
 </odoo>
+
+

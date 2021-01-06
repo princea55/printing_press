@@ -10,6 +10,10 @@ class printingpressOrder(models.Model):
         for i in self:
             print("----------------------*********************----------------",i.total_price)
             i.total_order_price += i.total_price
+    def get_product(self):
+        return {
+            'name':_()
+        }
 
     customer_id = fields.Many2one('printingpress.customer', string="Customer", required=True)
     isworking = fields.Boolean(string='IsWorking', default=False)
@@ -21,6 +25,22 @@ class printingpressOrder(models.Model):
     orderline_ids = fields.One2many('printingpress.orderline', 'orderl_id', string='orders')
     total_price = fields.Float(related='orderline_ids.total_price',  string="Total_price")
     total_order_price = fields.Integer(string="Total_order_price", compute="_total_order_price", store=True)
+    state = fields.Selection([
+        ('place_order', 'Place Order'),
+        ('confirmed_order', 'Confirmed Order'),
+        ('sale_order', 'sale Order'),
+    ], string='State', default="place_order")
+    
+
+    def place_orders(self):
+        self.state = "confirmed_order"
+
+    def confirmed_orders(self):
+        self.state = "sale_order"
+
+    def cancel_order(self):
+        self.state = "place_order"
+    
     
     
 
