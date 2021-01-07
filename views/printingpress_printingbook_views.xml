@@ -22,6 +22,8 @@
         </field>
     </record>
 
+
+
     <record id="view_printingpress_printingbook_tree" model="ir.ui.view">
         <field name="name">view.printingpress.printingbook.tree</field>
         <field name="model">printingpress.printingbook</field>

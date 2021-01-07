@@ -7,14 +7,15 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button string="Place Order" type="object" name="place_orders" states="place_order" class="oe_highlight"/>
-                    <button string="Confirm Order" type="object" name="confirmed_orders" states="confirmed_order"/>
-                    <button string="Cancel" type="object" name="cancel_order" states="place_order,confirmed_order,sale_order"/>
-                    <field name="state" widget="statusbar" options="{'clickable': '1'}" />
+                    <button string="Place Order" type="object" name="place_btn" states="initial,cancel_order" class="oe_highlight"/>
+                    <button string="Confirm Order" type="object" name="confirmed_btn" states="place_order" class="oe_highlight"/>
+                    <button string="Cancel" type="object" name="cancel_btn" states="confirmed_order,place_order"/>
+                    <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
                     
-                    <!-- <div class="oe_title">
+                    <!-- <div class="oe_titl
+                    e">
                         <h1>
                             <field name="name_seq" readonly="1" />
                         </h1>

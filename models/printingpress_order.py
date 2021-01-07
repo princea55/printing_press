@@ -8,7 +8,6 @@ class printingpressOrder(models.Model):
     @api.depends('total_price')
     def _total_order_price(self):
         for i in self:
-            print("----------------------*********************----------------",i.total_price)
             i.total_order_price += i.total_price
     def get_product(self):
         return {
@@ -26,20 +25,21 @@ class printingpressOrder(models.Model):
     total_price = fields.Float(related='orderline_ids.total_price',  string="Total_price")
     total_order_price = fields.Integer(string="Total_order_price", compute="_total_order_price", store=True)
     state = fields.Selection([
+        ('initial', 'Initial'),
         ('place_order', 'Place Order'),
         ('confirmed_order', 'Confirmed Order'),
-        ('sale_order', 'sale Order'),
-    ], string='State', default="place_order")
+        ('cancel_order', 'Cancel Order'),
+    ], string='State', default="initial")
     
 
-    def place_orders(self):
+    def place_btn(self):
+        self.state = "place_order"
+
+    def confirmed_btn(self):
         self.state = "confirmed_order"
 
-    def confirmed_orders(self):
-        self.state = "sale_order"
-
-    def cancel_order(self):
-        self.state = "place_order"
+    def cancel_btn(self):
+        self.state = "cancel_order"
     
     
     
