@@ -41,8 +41,22 @@ class printingpressOrder(models.Model):
     def cancel_btn(self):
         self.state = "cancel_order"
     
-    
-    
+    @api.model
+    def default_get(self, fields_list):
+        print("================default_get called============")
+        print(fields_list)
+        res = super(printingpressOrder, self).default_get(fields_list)
+
+        print(res)
+        
+        if 'total_order_price' in fields_list:
+            res['total_order_price'] = 100
+            
+        print("==============after super called===============")
+        print(res)
+        return res
+
+
 
 
     

@@ -6,6 +6,12 @@
         <field name="model">printingpress.product</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button type="object" name="get_operation" string="Get Operation"/>
+                    <button type="object" name="get_filtered" string="Filterd"/>
+                    <button type="object" name="sorted_function" string="Sorted Method"/>
+                    <button type="object" name="mapped_method" string="Mapped Method"/>
+                </header>
                 <sheet>
                     <div name="button_box" position="inside">
                         <button class="oe_stat_button" type="object" name="get_product_category" icon="fa-cube">

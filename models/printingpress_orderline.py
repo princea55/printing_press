@@ -1,11 +1,13 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
+
 class printingpressOrderline(models.Model):
     _name = "printingpress.orderline"
     _description = "This table contains all orderline records"
     _sql_constraints = [
-        ('quentity_check', 'check (quentity >= 10)', "Quentity must be greater or eqaul 10!"),
+        ('quentity_check', 'check (quentity >= 10)',
+         "Quentity must be greater or eqaul 10!"),
     ]
     # _rec_name="product_id"
     # @api.depends('quentity','unit_price')
@@ -14,7 +16,6 @@ class printingpressOrderline(models.Model):
     #         print(i.unit_price,i.quentity)
     #         i.total_price = i.unit_price * i.quentity
 
-    
     @api.onchange('quentity')
     def _onchange_quentity(self):
         print("onchange call")
@@ -35,6 +36,12 @@ class printingpressOrderline(models.Model):
     @api.constrains('total_price')
     def _check_amount(self):
         for line in self:
-            print("line Price",line.total_price)
-            if line.total_price <=0:
-                raise ValidationError('The amount of a cash transaction cannot be 0.')
+            print("line Price", line.total_price)
+            if line.total_price <= 0:
+                raise ValidationError(
+                    'The amount of a cash transaction cannot be 0.')
+
+
+  
+
+    

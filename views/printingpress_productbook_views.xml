@@ -127,3 +127,5 @@
     <menuitem id="menu_product_book" name="Product Book" parent="main_menu_product" action="action_printingpress_productbook"/>
 
 </odoo>
+
+

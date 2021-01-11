@@ -6,10 +6,11 @@ from openerp.models import TransientModel
 class printingpressEmployee(models.Model):
     _name = "printingpress.employee"
     _description = "This table contains all customers records"
-    _inherit = 'mail.thread'
+    # _inherit = 'mail.thread'
     _sql_constraints = [
         ('name_uniq', 'unique(name)', 'Employee name already exists !')
     ]
+    
     name = fields.Char(string="Employee Name", required=True, track_visibilty='always')
     email = fields.Char(string="Employee Email", required=True)
     contact = fields.Char(string="Employee Contact", required=True, track_visibilty='onchange')
@@ -21,6 +22,7 @@ class printingpressEmployee(models.Model):
     state = fields.Many2one('res.country.state', string='State')
     address = fields.Text(string="Address")
     city = fields.Char(string='City')
+    
     
 
     @api.constrains('experience')
@@ -37,6 +39,18 @@ class printingpressEmployee(models.Model):
     #         return {
     #             'domain': {'state': [('id', 'in', ids.ids)], }
     #         }
+
+    @api.model
+    def fields_view_get(self, view_id=None, view_type='tree', toolbar=False, submenu=False):
+        print("***************Field View Get Method Called************")
+        """ Set the correct label for `unit_amount`, depending on company UoM """
+        print(self)
+        result = super(printingpressEmployee, self).fields_view_get(view_id=view_id, view_type='tree', toolbar=toolbar, submenu=submenu)
+        # result['arch'] = self._apply_timesheet_label(result['arch'])
+        print(result)
+        result['fields']['name']['sortable']=False
+        result['fields']['name']['string']="Employees"
+        return result
 
     
     

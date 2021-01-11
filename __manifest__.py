@@ -4,7 +4,7 @@
     'version': '1.0',
     'author': 'TechUltra Solutions',
     'website': 'www.techultrasolutions.com',
-    'depends': ['base','mail'],
+    'depends': ['base'],
     'data': [
         #security
         'security/printingpress_security.xml',
