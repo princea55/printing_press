@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="printingpress.order_report">
+        <t t-call="web.external_layout">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="is-subtotal text-right mb-4">
+                        <div name="td_section_subtotal" colspan="99">
+                            <!-- <strong class="mr16">Address:</strong> -->
+                            <div>
+                                <t t-esc="doc.customer_id.street"/>
+                            </div>
+                            <div>
+                                <t t-esc="doc.customer_id.street2"/>
+                            </div>
+                            <div>
+                                <t t-esc="doc.customer_id.zip_code"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="mb-4">Order #<t t-esc="doc.order_sequence"/>
+                    </h2>
+
+                    <div class="row">
+                        <div class="col-3">
+                            <strong>Customer Name:</strong>
+                            <div>
+                                <t t-esc="doc.customer_id.name"/>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <strong>Order Date:</strong>
+                            <div>
+                                <t t-esc="doc.date"/>
+                            </div>
+                        </div>
+
+                    </div>
+                    <table class="table table-sm o_main_table" border="1">
+                        <tr>
+                            <th class="text-left">Product Name</th>
+                            <th class="text-right">Quentity</th>
+                            <th class="text-right">Unit Price</th>
+                            <th class="text-right">Total Price</th>
+                        </tr>
+                        <t t-foreach="doc.orderline_ids" t-as="line">
+                            <tr >
+                                <td class="text-left">
+                                    <t t-esc="line.product_id.name"/>
+                                </td>
+                                <td class="text-right">
+                                    <t t-esc="line.quentity"/>
+                                </td>
+                                <td class="text-right">
+                                    <t t-esc="line.unit_price"/>
+                                </td>
+                                <td class="text-right">
+                                    <t t-esc="line.order_price"/>
+                                </td>
+                            </tr>
+
+
+                        </t>
+
+                        <tr class="is-subtotal text-right">
+                            <td name="td_section_subtotal" class="mt-4" colspan="99">
+                                <strong class="mr16">Total</strong>
+                                <t t-esc="doc.total"/>
+                            </td>
+                        </tr>
+
+                    </table>
+                </t>
+            </t>
+        </t>
+
+    </template>
+
+
+</odoo>

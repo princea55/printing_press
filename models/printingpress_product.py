@@ -6,6 +6,7 @@ class printingpressProduct(models.Model):
     _description = "This table contains all products records"
 
     def _get_total_no_of_product(self):
+        print("=====================>>>>>>>>>>call _get_total_no_of_product")
         for record in self:
             record.count_products = self.env['printingpress.product'].search_count(
                 [('product_category_id', '=', 2)])
@@ -21,11 +22,14 @@ class printingpressProduct(models.Model):
             'context': "{'create': False}"
         }
 
+    
     name = fields.Char(string="Product Name", required=True)
     isbn = fields.Char(string="ISBN No.", required=True)
     publisher_name = fields.Char(string="Publisher Name")
     no_of_page = fields.Char(string="Number Of Page")
-    price_per_book = fields.Integer(string="Price Per Book", required=True)
+    currency_id = fields.Many2one(
+        'res.currency', string='Currency')
+    price_per_book = fields.Monetary(string="Price Per Book", required=True)
     product_detail = fields.Text(string="Product Description")
     # image = fields.Binary(string='Photo')
     count_products = fields.Integer(
@@ -41,6 +45,7 @@ class printingpressProduct(models.Model):
     # order_ids = fields.One2many('printingpress.order', 'product_id', string="Orders")
     printingbook_ids = fields.One2many(
         'printingpress.printingbook', 'product_id', string="Printin Book")
+    
 
     def get_operation(self):
         print("======================blank recordset=========",self.env['printingpress.product'])
@@ -72,14 +77,17 @@ class printingpressProduct(models.Model):
 
         # vals.update({'product_language_id':[(4,2)]})
         rec = super(printingpressProduct, self).create(vals)
+        
         print('=====================rec create method===================',rec)
         print('=====================vals create method===================',vals)
         return rec
 
     def get_filtered(self):
         record_set = self.env['printingpress.product'].search([])
-        row = record_set.filtered(lambda r: r.price_per_book < 1000)
         
+        row = record_set.filtered(lambda r: r.price_per_book < 1000)
+        for i in row:
+            print("*******************",i.name)
 
     def sorted_function(self):
         record_set = self.env['printingpress.product'].search([])

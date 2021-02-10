@@ -1,7 +1,7 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
-from openerp import api
-from openerp.models import TransientModel
+# from openerp import api
+# from openerp.models import TransientModel
 
 class printingpressEmployee(models.Model):
     _name = "printingpress.employee"
@@ -10,6 +10,7 @@ class printingpressEmployee(models.Model):
     _sql_constraints = [
         ('name_uniq', 'unique(name)', 'Employee name already exists !')
     ]
+    _order = "salary asc"
     
     name = fields.Char(string="Employee Name", required=True, track_visibilty='always')
     email = fields.Char(string="Employee Email", required=True)
@@ -24,6 +25,16 @@ class printingpressEmployee(models.Model):
     city = fields.Char(string='City')
     
     
+    def wiz_open(self):
+        # not working
+        # print(self.env['ir.actions.act_window']._for_xml_id('printingpress_employee.action_update_employee_salary'))
+        return {
+            'type':'ir.actions.act_window',
+            'res_model':'printingpress.employeesalary',
+            'view_mode':'form',
+            'target':'new',
+        }
+
 
     @api.constrains('experience')
     def _check_amount(self):
@@ -32,25 +43,19 @@ class printingpressEmployee(models.Model):
                 raise ValidationError('Employee experience must be 0 or greater!')
 
     # @api.onchange('country')
-    # def set_values_to(self):
-    #     if self.country:
-    #         ids = self.env['res.country.state'].search(
-    #             [('country_id', '=', self.country.id)])
-    #         return {
-    #             'domain': {'state': [('id', 'in', ids.ids)], }
-    #         }
-
-    @api.model
-    def fields_view_get(self, view_id=None, view_type='tree', toolbar=False, submenu=False):
-        print("***************Field View Get Method Called************")
-        """ Set the correct label for `unit_amount`, depending on company UoM """
-        print(self)
-        result = super(printingpressEmployee, self).fields_view_get(view_id=view_id, view_type='tree', toolbar=toolbar, submenu=submenu)
-        # result['arch'] = self._apply_timesheet_label(result['arch'])
-        print(result)
-        result['fields']['name']['sortable']=False
-        result['fields']['name']['string']="Employees"
-        return result
+    # def set_values_to(self):from openerp import api
+# from openerp.models import TransientModel
+    # @api.model
+    # def fields_view_get(self, view_id=None, view_type='tree', toolbar=False, submenu=False):
+    #     print("***************Field View Get Method Called************")
+    #     """ Set the correct label for `unit_amount`, depending on company UoM """
+    #     print(self)
+    #     result = super(printingpressEmployee, self).fields_view_get(view_id=view_id, view_type='tree', toolbar=toolbar, submenu=submenu)
+    #     # result['arch'] = self._apply_timesheet_label(result['arch'])
+    #     print(result)
+    #     result['fields']['name']['sortable']=False
+    #     result['fields']['name']['string']="Employees"
+    #     return result
 
     
     

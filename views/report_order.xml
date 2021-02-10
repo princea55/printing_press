@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+     <report
+        string="Order Invoice"
+        id="report_order"
+        model="printingpress.order"
+        report_type="qweb-html"
+        name="printingpress.order_report"
+        file="printingpress.order_report"
+        />
+    </data>
+
+</odoo>

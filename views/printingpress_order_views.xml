@@ -14,12 +14,11 @@
                 </header>
                 <sheet>
                     
-                    <!-- <div class="oe_titl
-                    e">
+                    <div class="oe_title">
                         <h1>
-                            <field name="name_seq" readonly="1" />
+                            <field name="order_sequence" readonly="1" />
                         </h1>
-                    </div> -->
+                    </div>
 
                     <!-- <button string="%(action_printingpress_product)d" class="oe_right oe_button_box" icon="fa-cube" type="action"/> -->
                     <button name="%(action_printingpress_productcategory)d" string="Product" type="action" />
@@ -27,7 +26,7 @@
                     <group>
                         <field name="customer_id"/>
                         <field name="date"/>
-                        <field name="total_order_price"/>
+                        <!-- <field name="total_order_price"/> -->
 
                     </group>
                     <strong class="mr-2">Is Working </strong>
@@ -38,6 +37,18 @@
                     <notebook>
                         <page name="product_order" string="Select Product">
                             <field name="orderline_ids"/>
+                            <group name="note_group" col="6">
+                               
+                                <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                                    <field name="total" readonly="1" force_save="1"/>
+                                    <!-- <field name="amount_tax" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                    <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                        <label for="amount_total" />
+                                    </div>
+                                    <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/> -->
+                                </group>
+                                <div class="oe_clear"/>
+                            </group>
                         </page>
                     </notebook>
                 </sheet>
@@ -50,12 +61,13 @@
         <field name="model">printingpress.order</field>
         <field name="arch" type="xml">
             <tree decoration-primary="(iscomplete == False and isworking == True)" decoration-success="(iscomplete == True and isworking == False)">
-                <!-- <field name="name_seq"/> -->
+                <field name="order_sequence"/>
                 <field name="customer_id"/>
                 <field name="orderline_ids"/>
                 <field name="date"/>
                 <field name="isworking" widget="boolean_toggle"/>
                 <field name="iscomplete" widget="boolean_toggle"/>
+                <field name="total" />
             </tree>
         </field>
     </record>
@@ -88,6 +100,7 @@
         <field name="arch" type="xml">
             <pivot string="Order Show">
                 <field name="customer_id" type="row"/>
+                <!-- <field name="customer_id" type="row"/> -->
                 <field name="date" type="col" interval="day"/>
             </pivot>
         </field>

@@ -13,11 +13,11 @@
                     <button type="object" name="mapped_method" string="Mapped Method"/>
                 </header>
                 <sheet>
-                    <div name="button_box" position="inside">
-                        <button class="oe_stat_button" type="object" name="get_product_category" icon="fa-cube">
+                    <div class="oe_button_box" name="button_box" position="inside">
+                        <button  type="object" class="oe_stat_button" name="get_product_category" icon="fa-cube">
                             <field string="Product Categories" name="count_products" widget="statinfo"/>
                         </button>
-                    </div>
+                    </div>  
                     <field name="image" class="oe_avatar" widget="image"/>
                     <group>
                         <group>
@@ -26,13 +26,14 @@
                             <field name="publisher_name" />
                             <field name="product_category_id" />
                             <field name="product_subcategory_id" />
-                            <field name="product_language_id"/>
+                            <field name="product_language_id" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
 
                             <!-- <field name="product_type" /> -->
                             <!-- <field name="category" /> -->
                         </group>
                         <group>
                             <field name="no_of_page" />
+                            <field name="currency_id" />
                             <field name="price_per_book" />
 
                             <field name="product_detail"/>

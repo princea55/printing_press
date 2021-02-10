@@ -60,6 +60,7 @@
 
 
 
+
     <!-- <menuitem id="menu_suplier" name="Suplier" parent="main_menu_employee" action="action_printingpress_suplier"/> -->
 
 </odoo>

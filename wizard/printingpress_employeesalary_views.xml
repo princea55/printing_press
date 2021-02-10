@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_printingpress_employeesalary_form_wiz" model="ir.ui.view">
+        <field name="name">view.printingpress.employeesalary.form.wiz</field>
+        <field name="model">printingpress.employeesalary</field>
+        <field name="arch" type="xml">
+            <form string="">
+
+                <group>
+                    <group>
+                        <field name="salary" />
+                    </group>
+                </group>
+
+                <footer>
+                    <button string="Update salary" type="object" name="update_employee_salary"/>
+                    <button string="Cancel" special="cancel" class="btn btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_update_employee_salary" model="ir.actions.act_window">
+        <field name="name">Employee Salary</field>
+        <field name="res_model">printingpress.employeesalary</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_update_employee_salary_window" model="ir.actions.act_window">
+        <field name="name">Employee Salary</field>
+        <field name="res_model">printingpress.employeesalary</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="printingpress.view_printingpress_employeesalary_form_wiz"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="printingpress.model_printingpress_employee"/>
+        <field name="binding_view_types">list,form</field>
+    </record>
+
+    <menuitem id="model_name_menu" name="name" sequence="10"/>
+    <menuitem id="salary update" name="Salary Update" parent="main_menu_employee" action="printingpress.action_update_employee_salary"/>
+</odoo>

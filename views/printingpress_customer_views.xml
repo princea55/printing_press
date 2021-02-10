@@ -6,24 +6,106 @@
         <field name="model">printingpress.customer</field>
         <field name="arch" type="xml">
             <form string="">
-                
+
                 <sheet>
-                <field name="image" widget="image" class="oe_avatar"/>
+
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name_seq" readonly="1"/>
+                        </h1>
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" required="1" placeholder="Name"/>
+                        </h1>
+                    </div>
+
+
+                    <group>
+                        <group>
+                           
+                            <field name="email" placeholder="Email"/>
+                            <field name="contact" placeholder="Contact" attrs="{'required': [('email', '!=', False)]}"/>
+                            <field name="ref_key" placeholder="Reference Key"/>
+                            <field name="parent_id" placeholder="Parent Key"/>
+                        </group>
+                        <group>
+                            <label for="street" string="Address"/>
+                            <div class="o_address_format">
+                                <field name="street" placeholder="Street..." class="o_address_street"/>
+                                <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                <field name="city" placeholder="City" class="o_address_city"/>
+                                <field name="state" class="o_address_state" placeholder="State" options='{"no_open": True}'/>
+                                <field name="zip_code" placeholder="ZIP" class="o_address_zip"/>
+                                <field name="country" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                            </div>
+                            <!-- <field name="city" placeholder="City"/> -->
+
+                            <!-- <field name="address" placeholder="Address"/> -->
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="child" string="Child">
+                            <field name="child_ids" context="{'form_view_ref':'printingpress.view_printingpress_customer_custom_form'}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_printingpress_customer_custom_form" model="ir.ui.view">
+        <field name="name">view.printingpress.customer.form</field>
+        <field name="model">printingpress.customer</field>
+        <field name="arch" type="xml">
+            <form string="">
+
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
+
+
                     <group>
                         <group>
                             <field name="name" required="1" placeholder="Name"/>
                             <field name="email" placeholder="Email"/>
-                            <field name="contact" placeholder="Contact"  attrs="{'required': [('email', '!=', False)]}"/>
+                            <field name="contact" placeholder="Contact" attrs="{'required': [('email', '!=', False)]}"/>
+                            <field name="ref_key" placeholder="Reference Key"/>
+                            <!-- <field name="parent_id" placeholder="Parent Key"/> -->
                         </group>
                         <group>
-                            <field name="city" placeholder="City"/>
-                            <field name="address" placeholder="Address"/>
+                            <label for="street" string="Address"/>
+                            <div class="o_address_format">
+                                <field name="street" placeholder="Street..." class="o_address_street"/>
+                                <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                <field name="city" placeholder="City" class="o_address_city"/>
+                                <field name="state" class="o_address_state" placeholder="State" options='{"no_open": True}'/>
+                                <field name="zip_code" placeholder="ZIP" class="o_address_zip"/>
+                                <field name="country" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                            </div>
+                            <!-- <field name="city" placeholder="City"/> -->
+
+                            <!-- <field name="address" placeholder="Address"/> -->
                         </group>
                     </group>
+                    <!-- <notebook>
+                        <page name="child" string="Child">
+                            <field name="child_ids" context="{'form_view_ref':'printingpress.product_packaging_delivery_form'}"/>
+                        </page>
+                    </notebook> -->
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
             </form>
         </field>
     </record>
+
+
 
     <record id="view_printingpress_customer_search" model="ir.ui.view">
         <field name="name">view.printingpress.customer.search</field>
@@ -37,7 +119,7 @@
                 <group>
                     <filter name="grp_city" string="Group By City" context="{'group_by':'city'}" />
                 </group>
-               
+
             </search>
 
         </field>
@@ -50,12 +132,28 @@
                 <field name="id" />
                 <templates>
                     <t t-name="kanban-box">
+
                         <div t-attf-class="oe_kanban_content oe_kanban_global_click">
+                            <div class="o_dropdown_kanban dropdown">
+
+                                <a class="dropdown-toggle o-no-caret btn" role="button" data-toggle="dropdown" data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                    <span class="fa fa-ellipsis-v"/>
+                                </a>
+                                <div class="dropdown-menu" role="menu">
+                                    <t t-if="widget.editable">
+                                        <a role="menuitem" type="edit" class="dropdown-item">Edit</a>
+                                    </t>
+                                    <t t-if="widget.deletable">
+                                        <a role="menuitem" type="delete" class="dropdown-item">Delete</a>
+                                    </t>
+                                    <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-3 ">
                                     <div class="o_kanban_image">
                                         <!-- <img t-att-src="kanban_image('printingpress.employee','image',record.id.raw_value)" alt="Image"/> -->
-                                        <img  alt="Avatar" t-att-src="kanban_image('printingpress.customer', 'image',record.id.raw_value)"/>
+                                        <img alt="Avatar" t-att-src="kanban_image('printingpress.customer', 'image',record.id.raw_value)"/>
                                     </div>
                                 </div>
                                 <div class="mr-3">
@@ -86,13 +184,16 @@
         <field name="arch" type="xml">
 
             <tree>
+                <field name="name_seq" />
                 <field name="name" />
                 <field name="email" widget="email" />
                 <field name="contact" widget="phone" />
-                <field name="city" placeholder="City"/>
+                <field name="city"/>
             </tree>
         </field>
     </record>
+
+
 
 
     <record id="action_printingpress_customer" model="ir.actions.act_window">
@@ -107,3 +208,7 @@
     <menuitem id="menu_customer" name="Customer" parent="main_menu_customer" action="action_printingpress_customer"/>
 
 </odoo>
+ 
+
+
+ 

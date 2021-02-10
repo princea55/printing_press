@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="view_printingpress_employees_form" model="ir.ui.view">
+        <field name="name">view.printingpress.employees.form</field>
+        <field name="model">printingpress.employee</field>
+        <field name="arch" type="xml">
+            <form >
+            <header>
+                <button name="wiz_open" string="open custom wizard" type="object"/>
+                <button name="printingpress.action_update_employee_salary" string="open custom wizard action button" type="action"/>
+            </header>
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <group>
+                        <group>
+                            <field name="name" required="1" placeholder="Name"/>
+                            <field name="email" placeholder="Email"/>
+                            <field name="contact" placeholder="Contact" attrs="{'required': [('email', '!=', False)]}"/>
+                            <field name="salary" placeholder="Salary"/>
+
+                        </group>
+                        <group>
+                        
+                            <field name="experience" placeholder="Experience"/>
+                            <field name="city" placeholder="City"/>
+                            <field name="state" placeholder="State"/>
+                            <field name="country" placeholder="Country"/>
+                            <field name="address" placeholder="Address"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_printingpress_employees_tree" model="ir.ui.view">
+        <field name="name">view.printingpress.employees.tree</field>
+        <field name="model">printingpress.employee</field>
+        <field name="arch" type="xml">
+
+            <tree default_order="salary desc">
+                <field name="name" />
+                <field name="email" />
+                <field name="contact" />
+                <field name="salary" />
+                <field name="city" placeholder="City"/>
+                <field name="state" placeholder="State"/>
+
+            </tree>
+        </field>
+    </record>
+    <record id="view_printingpress_employees_kanban" model="ir.ui.view">
+        <field name="name">view.printingpress.employees.kanban</field>
+        <field name="model">printingpress.employee</field>
+        <field name="arch" type="xml">
+            <kanban default_order="salary asc">
+                <field name="id" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_content oe_kanban_global_click">
+                            <div class="row">
+                                <div class="col-3 ">
+                                    <div class="o_kanban_image">
+                                        <!-- <img t-att-src="kanban_image('printingpress.employee','image',record.id.raw_value)" alt="Image"/> -->
+                                        <img alt="Avatar" t-att-src="kanban_image('printingpress.customer', 'image',record.id.raw_value)"/>
+                                    </div>
+                                </div>
+                                <div class="mr-3">
+                                    <div>
+                                        <strong>Name: </strong>
+                                        <field name="name"/>
+                                    </div>
+                                    <div>
+                                        <strong>Mobile No.: </strong>
+                                        <field name="contact"/>
+                                    </div>
+                                    <div>
+                                        <strong>Email: </strong>
+                                        <field name="email"/>
+                                    </div>
+                                    <div>
+                                        <strong>Email: </strong>
+                                        <field name="salary"/>
+                                    </div>
+                                    <!-- <field name="salary" /> -->
+                                </div>
+
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="action_printingpress_employees" model="ir.actions.act_window">
+        <field name="name">Employee Record</field>
+        <field name="res_model">printingpress.employee</field>
+        
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="context">{'search_default_name':'jay', 'default_salary': 5000, 'search_default_order_salary': 1}</field>
+        <!--        <field name="context">{'search_default_name': 'Raj', 'search_default_order_age': 1, 'default_age': 18 }</field>-->
+    </record>
+    <menuitem id="main_menu_employee" name="Employee" parent="menu_printingpress"/>
+    <menuitem id="menu_employees" name="Employee" parent="main_menu_employee" action="action_printingpress_employees"/>
+</odoo>

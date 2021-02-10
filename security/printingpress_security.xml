@@ -4,7 +4,7 @@
     <record id="grp_manager" model="res.groups">
         <field name="name">Printing Press Manager</field>
     </record>
-
+    
     <!-- <record id="grp_manager_product" model="res.groups">
         <field name="name">Product</field>
     </record>

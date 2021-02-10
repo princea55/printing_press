@@ -2,68 +2,6 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
 access_item_manager, access.item.manager,model_printingpress_customer,grp_manager,1,1,1,1
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 access_item_product, access.item.product,model_printingpress_product,grp_manager,1,1,1,1
 
 access_item_employee, access.item.employee,model_printingpress_employee,grp_manager,1,1,1,1
@@ -87,6 +25,12 @@ access_item_orderline, access.item.orderline,model_printingpress_orderline,grp_m
 access_item_language, access.item.language,model_printingpress_language,grp_manager,1,1,1,1
 
 access_item_employeetype, access.item.employeetype,model_printingpress_employeetype,grp_manager,1,1,1,1
+
+access_item_timemembership, access.item.timemembership,model_printintgpress_timemembership,grp_manager,1,1,1,1
+
+access_item_permanentlymembership, access.item.permanentlymembership,model_printintgpress_permanentlymembership,grp_manager,1,1,1,1
+
+access_item_employeesalary, access.item.employeesalary,model_printingpress_employeesalary,grp_manager,1,1,1,1
 
 
 

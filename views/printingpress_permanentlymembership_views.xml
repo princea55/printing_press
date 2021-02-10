@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_printingpress_permanentlymembership_form" model="ir.ui.view">
+        <field name="name">view.printingpress.permanentlymembership.form</field>
+        <field name="model">printintgpress.permanentlymembership</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="name" placeholder="Memmbership Level"/>                 
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_printingpress_permanentlymembership_tree" model="ir.ui.view">
+        <field name="name">view.printingpress.permanentlymembership.tree</field>
+        <field name="model">printintgpress.permanentlymembership</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_printingpress_permanentlymembership" model="ir.actions.act_window">
+        <field name="name">Product permanentlymembership Record</field>
+        <field name="res_model">printintgpress.permanentlymembership</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_permanentlymembership" name="Permeanent Membership" parent="main_menu_customer" action="action_printingpress_permanentlymembership"/>
+
+</odoo>

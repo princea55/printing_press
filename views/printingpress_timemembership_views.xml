@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_printingpress_timemembership_form" model="ir.ui.view">
+        <field name="name">view.printingpress.timemembership.form</field>
+        <field name="model">printintgpress.timemembership</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="name" placeholder="Name"/>                 
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_printingpress_timemembership_tree" model="ir.ui.view">
+        <field name="name">view.printingpress.timemembership.tree</field>
+        <field name="model">printintgpress.timemembership</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_printingpress_timemembership" model="ir.actions.act_window">
+        <field name="name">Product Timemembership Record</field>
+        <field name="res_model">printintgpress.timemembership</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_timemembership" name="Time Membership" parent="main_menu_customer" action="action_printingpress_timemembership"/>
+
+    
+
+</odoo>

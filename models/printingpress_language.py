@@ -8,4 +8,4 @@ class printingpressLanguage(models.Model):
     ]
     name = fields.Char(string = "Language", size=50, help="Name of the language category", required=True)
     # language_id = fields.Many2one('printingpress.product', string="Products")
-    
+    color = fields.Integer(string="color", default=0)

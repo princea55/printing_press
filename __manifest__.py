@@ -4,19 +4,19 @@
     'version': '1.0',
     'author': 'TechUltra Solutions',
     'website': 'www.techultrasolutions.com',
-    'depends': ['base'],
+    'depends': ['base','crm'],
     'data': [
         #security
         'security/printingpress_security.xml',
         'security/ir.model.access.csv',
-        
+        'data/sequence.xml',
         
 
         #view
         'views/printingpress_customer_views.xml',
         'views/printingpress_product_views.xml',
         'views/printingpress_productbook_views.xml',
-        'views/printingpress_employee_views.xml',
+        'views/printingpress_employees_views.xml',
         'views/printingpress_rowmaterial_views.xml',
         'views/printingpress_suplier_views.xml',
         'views/printingpress_order_views.xml',
@@ -27,10 +27,19 @@
         'views/printingpress_language_views.xml',
         'views/printingpress_orderline_views.xml',
         'views/printingpress_employeetype_views.xml',
+        'views/printingpress_crm_views.xml',
+        'views/printingpress_timemembership_views.xml',
+        'views/printingpress_permanentlymembership_views.xml',
+
+        # wizard
+        'wizard/printingpress_employeesalary_views.xml',
+
+        #reports
+        'views/report_card.xml',
+        'views/report_order.xml',
 
 
-
-        # 'data/sequence.xml',
+        
         
     ],
     'css': ['static/src/css/common.css'],

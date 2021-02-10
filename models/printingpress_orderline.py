@@ -18,30 +18,33 @@ class printingpressOrderline(models.Model):
 
     @api.onchange('quentity')
     def _onchange_quentity(self):
-        print("onchange call")
         for i in self:
             print(i.unit_price, i.quentity)
-            i.total_price = i.unit_price * i.quentity
+            ttp = i.unit_price * i.quentity
+            i.update({
+                'total_price':ttp,
+                'order_price':ttp
+            })
+        
 
     product_id = fields.Many2one(
         'printingpress.product', string="Product", required=True)
     quentity = fields.Integer(string="Quentity", group_operator="sum",
                               default=1, readonly=False, track_visibility='onchange')
-    unit_price = fields.Integer(
+    currency_id = fields.Many2one('res.currency', string='Currency')
+    unit_price = fields.Monetary(
         related="product_id.price_per_book", string="Unit Price")
-    total_price = fields.Float(
-        string="Total price", digits=(5, 2), readonly=True, store=True)
+    
+    total_price = fields.Integer(string="Total price")
+    order_price = fields.Monetary(string="Order price")
     orderl_id = fields.Many2one('printingpress.order', string="Order")
-
+    
+    
     @api.constrains('total_price')
     def _check_amount(self):
         for line in self:
-            print("line Price", line.total_price)
             if line.total_price <= 0:
                 raise ValidationError(
                     'The amount of a cash transaction cannot be 0.')
 
 
-  
-
-    

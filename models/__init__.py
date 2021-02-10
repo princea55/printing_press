@@ -11,3 +11,6 @@ from . import printingpress_productsubcategory
 from . import printingpress_language
 from . import printingpress_orderline
 from . import printingpress_employeetype
+from . import printingpress_crm
+from . import printingpress_timemembership
+from . import printingpress_permentmembership

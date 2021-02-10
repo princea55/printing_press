@@ -13,10 +13,12 @@
                                 <field name="name"/>
                             </tree>
                         </field>
-
+                        
+                        <field name="currency_id" />
                         <field name="quentity" />
                         <field name="unit_price" />
-                        <field name="total_price" attrs="{'readonly':[('quentity','&gt;', 1)]}"/>
+                        <!-- <field name="total_price"/> -->
+                        <field name="order_price" readonly="1" force_save="1"/>
                     </group>
                 </sheet>
             </form>
@@ -44,7 +46,8 @@
                 </field>
                 <field name="quentity" />
                 <field name="unit_price" />
-                <field name="total_price" />
+                <!-- <field name="total_price" /> -->
+                <field name="order_price" />
             </tree>
         </field>
     </record>
